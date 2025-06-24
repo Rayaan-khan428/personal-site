@@ -1,0 +1,39 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "photos"
+public_folder: "/photos"
+
+collections:
+  - name: "pages"
+    label: "Pages"
+    files:
+      - file: "content/about.md"
+        label: "About Page"
+        name: "about"
+        fields:
+          - { label: "Title", name: "title", widget: "string", default: "About Me" }
+          - { label: "Photo", name: "photo", widget: "image", required: false }
+          - { label: "Bio", name: "body", widget: "markdown" }
+      - file: "content/projects.json"
+        label: "Projects"
+        name: "projects"
+        fields:
+          - name: "projects"
+            label: "Projects"
+            widget: "list"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "markdown" }
+              - { label: "URL", name: "url", widget: "string", required: false }
+      - file: "content/photos.json"
+        label: "Photo Gallery"
+        name: "photos"
+        fields:
+          - name: "photos"
+            label: "Photos"
+            widget: "list"
+            fields:
+              - { label: "Image", name: "image", widget: "image" }
+              - { label: "Alt Text", name: "alt", widget: "string" }

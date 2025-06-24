@@ -1,0 +1,19 @@
+{
+  "projects": [
+    {
+      "title": "WLU Maps",
+      "url": "#",
+      "description": "- Built an interactive web app that helps Laurier students find available study spaces and classrooms in real time, complete with filters for amenities and time slots.\n- Wrote a script to automatically gather and update class schedules, so students always have the latest info on open rooms.\n- Worked with the university to move classroom bookings from a clunky email process to a much smoother online experience."
+    },
+    {
+      "title": "Leetr",
+      "url": "#",
+      "description": "- Created a platform that makes technical interview prep more fun and effective, including a Chrome extension and a spaced repetition system that sends you reminders when it’s time to practice.\n- Tracks your progress, gives you insights, and lets you compete with friends on leaderboards or send each other coding challenges."
+    },
+    {
+      "title": "Huberman AI",
+      "url": "#",
+      "description": "- Made a chatbot that can answer medical questions using transcripts from a Stanford neuroscientist’s podcast.\n- Used AI and smart search techniques to make sure the answers are accurate and relevant."
+    }
+  ]
+}
