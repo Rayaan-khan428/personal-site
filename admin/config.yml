@@ -2,10 +2,13 @@ backend:
   name: github
   repo: "Rayaan-khan428/personal-site"
   branch: main
+  auth_type: implicit
+  base_url: https://decapcms.org/oauth/
 
 media_folder: "photos"
 public_folder: "/photos"
 
+# Optional: Uncomment if you want to use Uploadcare for media
 # media_library:
 #   name: uploadcare
 #   config:
@@ -44,6 +47,6 @@ collections:
               - { label: "Image", name: "image", widget: "image" }
               - { label: "Alt Text", name: "alt", widget: "string" }
 
-
 display_url: https://rayaank.netlify.app
-logo_url: https://rayaank.netlify.app/logo.png # Optional: add your logo
+# Removed logo_url since the file doesn't exist - uncomment if you add a logo
+# logo_url: https://rayaank.netlify.app/logo.png
