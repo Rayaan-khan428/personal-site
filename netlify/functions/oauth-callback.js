@@ -1,54 +1,50 @@
+// netlify/functions/oauth-callback.js
 exports.handler = async (event, context) => {
-  const { code, state, error } = event.queryStringParameters;
+  const { code, state, error } = event.queryStringParameters || {};
   
-  if (error) {
+  // Set CORS headers
+  const headers = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+    'Content-Type': 'text/html'
+  };
+
+  // Handle preflight
+  if (event.httpMethod === 'OPTIONS') {
     return {
       statusCode: 200,
-      headers: { 'Content-Type': 'text/html' },
-      body: `
-        <!DOCTYPE html>
-        <html>
-        <head>
-          <title>OAuth Error</title>
-        </head>
-        <body>
-          <script>
-            if (window.opener) {
-              window.opener.postMessage(
-                'authorization:github:error:' + '${error}',
-                '*'
-              );
-              window.close();
-            }
-          </script>
-          <p>Authorization failed: ${error}</p>
-        </body>
-        </html>
-      `
+      headers,
+      body: ''
     };
   }
   
-  if (!code) {
+  if (error || !code) {
+    const errorMessage = error || 'No authorization code received';
     return {
       statusCode: 200,
-      headers: { 'Content-Type': 'text/html' },
+      headers,
       body: `
         <!DOCTYPE html>
         <html>
         <head>
           <title>OAuth Error</title>
+          <script>
+            (function() {
+              function recieveMessage(e) {
+                console.log("Received message:", e.data);
+                if (e.data === "authorizing:github") {
+                  window.opener.postMessage("authorization:github:error:${errorMessage}", e.origin);
+                  window.removeEventListener("message", recieveMessage, false);
+                }
+              }
+              window.addEventListener("message", recieveMessage, false);
+              window.opener.postMessage("authorizing:github", "*");
+            })();
+          </script>
         </head>
         <body>
-          <script>
-            if (window.opener) {
-              window.opener.postMessage(
-                'authorization:github:error:No authorization code received',
-                '*'
-              );
-              window.close();
-            }
-          </script>
-          <p>No authorization code received</p>
+          <p>Authorization failed: ${errorMessage}</p>
         </body>
         </html>
       `
@@ -67,6 +63,7 @@ exports.handler = async (event, context) => {
         client_id: process.env.GITHUB_CLIENT_ID,
         client_secret: process.env.GITHUB_CLIENT_SECRET,
         code: code,
+        state: state
       }),
     });
     
@@ -75,39 +72,54 @@ exports.handler = async (event, context) => {
     if (tokenData.error) {
       throw new Error(tokenData.error_description || tokenData.error);
     }
+
+    // Get user data
+    const userResponse = await fetch('https://api.github.com/user', {
+      headers: {
+        'Authorization': `Bearer ${tokenData.access_token}`,
+        'Accept': 'application/json'
+      }
+    });
+
+    const userData = await userResponse.json();
+    
+    // Decap CMS expects this specific response format
+    const authData = {
+      token: tokenData.access_token,
+      provider: 'github'
+    };
     
     return {
       statusCode: 200,
-      headers: { 'Content-Type': 'text/html' },
+      headers,
       body: `
         <!DOCTYPE html>
         <html>
         <head>
           <title>Authorization Successful</title>
+          <script>
+            (function() {
+              function recieveMessage(e) {
+                console.log("Received message:", e.data);
+                if (e.data === "authorizing:github") {
+                  window.opener.postMessage(
+                    "authorization:github:success:${JSON.stringify(authData).replace(/"/g, '\\"')}", 
+                    e.origin
+                  );
+                  window.removeEventListener("message", recieveMessage, false);
+                  setTimeout(function() {
+                    window.close();
+                  }, 1000);
+                }
+              }
+              window.addEventListener("message", recieveMessage, false);
+              window.opener.postMessage("authorizing:github", "*");
+            })();
+          </script>
         </head>
         <body>
-          <script>
-            console.log('OAuth callback received, sending token to parent');
-            
-            // Send the success message to parent window
-            if (window.opener) {
-              const message = 'authorization:github:success:' + JSON.stringify({
-                token: '${tokenData.access_token}',
-                provider: 'github'
-              });
-              console.log('Sending message:', message);
-              window.opener.postMessage(message, '*');
-              
-              // Close the popup after a short delay
-              setTimeout(() => {
-                window.close();
-              }, 1000);
-            } else {
-              console.error('No window.opener found');
-            }
-          </script>
           <p>Authorization successful! This window should close automatically...</p>
-          <p><a href="#" onclick="window.close()">Close this window manually</a></p>
+          <p>If it doesn't, you can <a href="#" onclick="window.close()">close it manually</a>.</p>
         </body>
         </html>
       `
@@ -117,23 +129,27 @@ exports.handler = async (event, context) => {
     console.error('OAuth error:', error);
     return {
       statusCode: 200,
-      headers: { 'Content-Type': 'text/html' },
+      headers,
       body: `
         <!DOCTYPE html>
         <html>
         <head>
           <title>OAuth Error</title>
+          <script>
+            (function() {
+              function recieveMessage(e) {
+                console.log("Received message:", e.data);
+                if (e.data === "authorizing:github") {
+                  window.opener.postMessage("authorization:github:error:${error.message}", e.origin);
+                  window.removeEventListener("message", recieveMessage, false);
+                }
+              }
+              window.addEventListener("message", recieveMessage, false);
+              window.opener.postMessage("authorizing:github", "*");
+            })();
+          </script>
         </head>
         <body>
-          <script>
-            if (window.opener) {
-              window.opener.postMessage(
-                'authorization:github:error:' + '${error.message}',
-                '*'
-              );
-              window.close();
-            }
-          </script>
           <p>Authorization failed: ${error.message}</p>
         </body>
         </html>

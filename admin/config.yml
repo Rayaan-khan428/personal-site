@@ -1,3 +1,4 @@
+# admin/config.yml
 backend:
   name: github
   repo: "Rayaan-khan428/personal-site"
@@ -7,6 +8,9 @@ backend:
 
 media_folder: "photos"
 public_folder: "/photos"
+
+# Optional: Add this to help with debugging
+site_url: https://rayaank.netlify.app
 
 collections:
   - name: "pages"
