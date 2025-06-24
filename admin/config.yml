@@ -2,17 +2,11 @@ backend:
   name: github
   repo: "Rayaan-khan428/personal-site"
   branch: main
-  auth_type: implicit
-  base_url: https://decapcms.org/oauth/
+  base_url: https://rayaank.netlify.app
+  auth_endpoint: .netlify/functions/oauth-auth
 
 media_folder: "photos"
 public_folder: "/photos"
-
-# Optional: Uncomment if you want to use Uploadcare for media
-# media_library:
-#   name: uploadcare
-#   config:
-#     publicKey: YOUR_UPLOADCARE_PUBLIC_KEY
 
 collections:
   - name: "pages"
@@ -48,5 +42,3 @@ collections:
               - { label: "Alt Text", name: "alt", widget: "string" }
 
 display_url: https://rayaank.netlify.app
-# Removed logo_url since the file doesn't exist - uncomment if you add a logo
-# logo_url: https://rayaank.netlify.app/logo.png
