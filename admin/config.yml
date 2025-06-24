@@ -3,21 +3,26 @@ backend:
   repo: "Rayaan-khan428/personal-site"
   branch: main
 
-media_folder: "personal-site/photos"
-public_folder: "/personal-site/photos"
+media_folder: "photos"
+public_folder: "/photos"
+
+# media_library:
+#   name: uploadcare
+#   config:
+#     publicKey: YOUR_UPLOADCARE_PUBLIC_KEY
 
 collections:
   - name: "pages"
     label: "Pages"
     files:
-      - file: "personal-site/content/about.md"
+      - file: "content/about.md"
         label: "About Page"
         name: "about"
         fields:
           - { label: "Title", name: "title", widget: "string", default: "About Me" }
           - { label: "Photo", name: "photo", widget: "image", required: false }
           - { label: "Bio", name: "body", widget: "markdown" }
-      - file: "personal-site/content/projects.json"
+      - file: "content/projects.json"
         label: "Projects"
         name: "projects"
         fields:
@@ -28,7 +33,7 @@ collections:
               - { label: "Title", name: "title", widget: "string" }
               - { label: "Description", name: "description", widget: "markdown" }
               - { label: "URL", name: "url", widget: "string", required: false }
-      - file: "personal-site/content/photos.json"
+      - file: "content/photos.json"
         label: "Photo Gallery"
         name: "photos"
         fields:
@@ -38,3 +43,7 @@ collections:
             fields:
               - { label: "Image", name: "image", widget: "image" }
               - { label: "Alt Text", name: "alt", widget: "string" }
+
+
+display_url: https://rayaank.netlify.app
+logo_url: https://rayaank.netlify.app/logo.png # Optional: add your logo
