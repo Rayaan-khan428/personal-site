@@ -8,47 +8,51 @@
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
-    <header>
-        <h1>Rayaan Khan</h1>
-    </header>
-    
-    <nav>
-        <ul>
-            <li><a href="#about">About Me</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#photos">Photos</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
+    <div class="container">
+        <header>
+            <h1>Rayaan Khan</h1>
+        </header>
+        
+        <nav>
+            <ul>
+                <li><a href="#about">About Me</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#photos">Photos</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
 
-    <section id="about">
-        <!-- About me content will be loaded here -->
-    </section>
+        <main>
+            <section id="about">
+                <!-- About me content will be loaded here -->
+            </section>
 
-    <section id="projects">
-        <h2>Projects</h2>
-        <p>Here are some of the projects I've worked on:</p>
-        <ul id="project-list">
-            <!-- Projects will be loaded here -->
-        </ul>
-    </section>
+            <section id="projects">
+                <h2>Projects</h2>
+                <p>Here are some of the projects I've worked on:</p>
+                <div id="project-list" class="project-grid">
+                    <!-- Projects will be loaded here -->
+                </div>
+            </section>
 
-    <section id="photos">
-        <h2>Photos</h2>
-        <p>Here are some photos I've taken.</p>
-        <div class="photo-gallery">
-            <!-- Photos will be loaded here by script.js -->
-        </div>
-    </section>
+            <section id="photos">
+                <h2>Photos</h2>
+                <p>Here are some photos I've taken.</p>
+                <div class="photo-gallery">
+                    <!-- Photos will be loaded here by script.js -->
+                </div>
+            </section>
 
-    <section id="contact">
-        <h2>Contact</h2>
-        <p>You can reach me at rayaan.k.ca@gmail.com</p>
-    </section>
+            <section id="contact">
+                <h2>Contact</h2>
+                <p>You can reach me at <a href="mailto:rayaan.k.ca@gmail.com">rayaan.k.ca@gmail.com</a></p>
+            </section>
+        </main>
 
-    <footer>
-        <p>&copy; 2025 Rayaan Khan</p>
-    </footer>
+        <footer>
+            <p>&copy; 2025 Rayaan Khan</p>
+        </footer>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
