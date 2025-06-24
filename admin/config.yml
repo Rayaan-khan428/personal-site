@@ -1,5 +1,6 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: "Rayaan-khan428/personal-site"
   branch: main
 
 media_folder: "personal-site/photos"
