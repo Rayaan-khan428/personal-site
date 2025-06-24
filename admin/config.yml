@@ -3,7 +3,7 @@ backend:
   repo: "Rayaan-khan428/personal-site"
   branch: main
   base_url: https://rayaank.netlify.app
-  auth_endpoint: .netlify/functions/oauth-auth
+  auth_endpoint: /.netlify/functions/oauth-auth
 
 media_folder: "photos"
 public_folder: "/photos"

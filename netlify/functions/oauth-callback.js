@@ -3,32 +3,54 @@ exports.handler = async (event, context) => {
   
   if (error) {
     return {
-      statusCode: 400,
+      statusCode: 200,
       headers: { 'Content-Type': 'text/html' },
       body: `
-        <script>
-          window.opener.postMessage({
-            error: "${error}",
-            provider: "github"
-          }, window.location.origin);
-          window.close();
-        </script>
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <title>OAuth Error</title>
+        </head>
+        <body>
+          <script>
+            if (window.opener) {
+              window.opener.postMessage(
+                'authorization:github:error:' + '${error}',
+                '*'
+              );
+              window.close();
+            }
+          </script>
+          <p>Authorization failed: ${error}</p>
+        </body>
+        </html>
       `
     };
   }
   
   if (!code) {
     return {
-      statusCode: 400,
+      statusCode: 200,
       headers: { 'Content-Type': 'text/html' },
       body: `
-        <script>
-          window.opener.postMessage({
-            error: "No authorization code received",
-            provider: "github"
-          }, window.location.origin);
-          window.close();
-        </script>
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <title>OAuth Error</title>
+        </head>
+        <body>
+          <script>
+            if (window.opener) {
+              window.opener.postMessage(
+                'authorization:github:error:No authorization code received',
+                '*'
+              );
+              window.close();
+            }
+          </script>
+          <p>No authorization code received</p>
+        </body>
+        </html>
       `
     };
   }
@@ -54,46 +76,67 @@ exports.handler = async (event, context) => {
       throw new Error(tokenData.error_description || tokenData.error);
     }
     
-    // Get user info to verify token works
-    const userResponse = await fetch('https://api.github.com/user', {
-      headers: {
-        'Authorization': `token ${tokenData.access_token}`,
-        'User-Agent': 'Decap-CMS-OAuth'
-      }
-    });
-    
-    if (!userResponse.ok) {
-      throw new Error('Failed to fetch user info');
-    }
-    
-    const userData = await userResponse.json();
-    
     return {
       statusCode: 200,
       headers: { 'Content-Type': 'text/html' },
       body: `
-        <script>
-          window.opener.postMessage({
-            token: "${tokenData.access_token}",
-            provider: "github"
-          }, window.location.origin);
-          window.close();
-        </script>
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <title>Authorization Successful</title>
+        </head>
+        <body>
+          <script>
+            console.log('OAuth callback received, sending token to parent');
+            
+            // Send the success message to parent window
+            if (window.opener) {
+              const message = 'authorization:github:success:' + JSON.stringify({
+                token: '${tokenData.access_token}',
+                provider: 'github'
+              });
+              console.log('Sending message:', message);
+              window.opener.postMessage(message, '*');
+              
+              // Close the popup after a short delay
+              setTimeout(() => {
+                window.close();
+              }, 1000);
+            } else {
+              console.error('No window.opener found');
+            }
+          </script>
+          <p>Authorization successful! This window should close automatically...</p>
+          <p><a href="#" onclick="window.close()">Close this window manually</a></p>
+        </body>
+        </html>
       `
     };
     
   } catch (error) {
+    console.error('OAuth error:', error);
     return {
-      statusCode: 500,
+      statusCode: 200,
       headers: { 'Content-Type': 'text/html' },
       body: `
-        <script>
-          window.opener.postMessage({
-            error: "${error.message}",
-            provider: "github"
-          }, window.location.origin);
-          window.close();
-        </script>
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <title>OAuth Error</title>
+        </head>
+        <body>
+          <script>
+            if (window.opener) {
+              window.opener.postMessage(
+                'authorization:github:error:' + '${error.message}',
+                '*'
+              );
+              window.close();
+            }
+          </script>
+          <p>Authorization failed: ${error.message}</p>
+        </body>
+        </html>
       `
     };
   }
