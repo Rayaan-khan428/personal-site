@@ -32,6 +32,8 @@ collections:
             widget: "list"
             fields:
               - { label: "Title", name: "title", widget: "string" }
+              - { label: "Category", name: "category", widget: "select", options: ["Public", "Personal"], default: "Personal" }
+              - { label: "Image", name: "image", widget: "image", required: false }
               - { label: "Description", name: "description", widget: "markdown" }
               - { label: "URL", name: "url", widget: "string", required: false }
       - file: "content/photos.json"

@@ -14,6 +14,15 @@
     --spacing-lg: 24px;
     --spacing-xl: 32px;
     --spacing-xxl: 48px;
+    --bg-primary: #ffffff;
+}
+
+[data-theme="dark"] {
+    --text-primary: #e9e9e7;
+    --text-secondary: #a0a09c;
+    --border-light: #4a4a4a;
+    --bg-hover: #3a3a3a;
+    --bg-primary: #2f2f2f;
 }
 
 * {
@@ -25,7 +34,7 @@ body {
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    background-color: #ffffff;
+    background-color: var(--bg-primary);
     color: var(--text-primary);
     font-size: 16px;
 }
@@ -62,9 +71,36 @@ p {
 
 /* Header */
 header {
+    position: relative;
     text-align: center;
     margin-bottom: var(--spacing-xl);
-    padding: var(--spacing-lg) 0;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('./photos/banner.jpeg');
+    background-size: cover;
+    background-position: center;
+    border-radius: 3px;
+    overflow: hidden;
+    color: white;
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+header h1 {
+    position: relative;
+    z-index: 2;
+    margin: 0;
 }
 
 /* Navigation */
@@ -72,6 +108,9 @@ nav {
     margin-bottom: var(--spacing-xxl);
     padding-bottom: var(--spacing-lg);
     border-bottom: 1px solid var(--border-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 nav ul {
@@ -90,13 +129,44 @@ nav a {
     font-weight: 500;
     padding: var(--spacing-sm) var(--spacing-md);
     border-radius: 6px;
-    transition: all 0.2s ease;
+    transition: none;
     font-size: 14px;
 }
 
 nav a:hover {
     color: var(--accent-blue);
-    background-color: var(--bg-hover);
+    background-color: transparent;
+}
+
+#theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: color 0.2s ease, transform 0.2s ease;
+    padding: var(--spacing-xs);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#theme-toggle:hover {
+    color: var(--accent-blue);
+    transform: scale(1.1);
+}
+
+#theme-toggle .sun {
+    display: none;
+}
+#theme-toggle .moon {
+    display: block;
+}
+
+[data-theme="dark"] #theme-toggle .sun {
+    display: block;
+}
+[data-theme="dark"] #theme-toggle .moon {
+    display: none;
 }
 
 /* Main content */
@@ -124,51 +194,55 @@ section:first-child h2 {
 }
 
 /* Projects section */
-.project-grid {
+#project-list {
+    list-style: none;
+    padding: 0;
     display: flex;
     flex-direction: column;
+    gap: var(--spacing-xxl);
+}
+
+.project-item {
+    display: flex;
     gap: var(--spacing-lg);
+    align-items: flex-start;
 }
 
-.project-grid li {
-    list-style: none;
-    padding: var(--spacing-md);
-    border: 1px solid var(--border-light);
+.project-image {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
     border-radius: 8px;
-    transition: all 0.2s ease;
-    background-color: #ffffff;
+    border: 1px solid var(--border-light);
+    flex-shrink: 0;
 }
 
-.project-grid li:hover {
-    border-color: var(--accent-blue);
-    box-shadow: 0 2px 8px rgba(35, 131, 226, 0.1);
-}
-
-.project-link {
-    text-decoration: none;
-    color: inherit;
-    display: block;
-}
-
-.project-link strong {
-    font-size: 1.1rem;
+.project-details h3 {
+    margin: 0 0 var(--spacing-xs) 0;
+    font-size: 1.2rem;
     font-weight: 600;
+}
+
+.project-details h3 a {
+    text-decoration: none;
     color: var(--text-primary);
-    margin-bottom: var(--spacing-xs);
-    display: block;
     transition: color 0.2s ease;
 }
 
-.project-link:hover strong {
+.project-details h3 a:hover {
     color: var(--accent-blue);
 }
 
-.project-grid .project-link div {
+.project-details div {
     color: var(--text-secondary);
-    font-size: 14px;
 }
 
-.project-grid .project-link div p {
+.project-details div p {
+    margin: 0 0 var(--spacing-sm) 0;
+}
+
+.project-details div ul {
+    padding-left: var(--spacing-lg);
     margin: 0;
 }
 
@@ -234,10 +308,6 @@ li {
 }
 
 /* Remove default project list styling */
-#project-list {
-    list-style: none;
-    padding: 0;
-}
 
 /* Responsive design */
 @media (max-width: 768px) {

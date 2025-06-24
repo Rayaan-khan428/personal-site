@@ -19,6 +19,12 @@
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#photos">Photos</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li>
+                    <button id="theme-toggle" aria-label="Toggle dark mode">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sun"><path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/><circle cx="12" cy="12" r="5"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                    </button>
+                </li>
             </ul>
         </nav>
 
@@ -29,10 +35,18 @@
 
             <section id="projects">
                 <h2>Projects</h2>
-                <p>Here are some of the projects I've worked on:</p>
-                <div id="project-list" class="project-grid">
-                    <!-- Projects will be loaded here -->
-                </div>
+
+                <h3 class="project-category-title">Public Projects</h3>
+                <p>Projects I've built for others to use.</p>
+                <ul id="public-project-list" class="project-list">
+                    <!-- Public projects will be loaded here -->
+                </ul>
+
+                <h3 class="project-category-title">Personal Projects</h3>
+                <p>Things I've built for fun and learning.</p>
+                <ul id="personal-project-list" class="project-list">
+                    <!-- Personal projects will be loaded here -->
+                </ul>
             </section>
 
             <section id="photos">
