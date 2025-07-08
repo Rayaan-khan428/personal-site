@@ -309,6 +309,37 @@ li {
 
 /* Remove default project list styling */
 
+/* Social Links */
+.social-links {
+    margin: var(--spacing-lg) 0;
+    display: flex;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+}
+
+.social-links a {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--spacing-sm) var(--spacing-md);
+    background-color: var(--bg-hover);
+    border-radius: 6px;
+    text-decoration: none;
+    color: var(--text-primary);
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.social-links a:hover {
+    background-color: var(--accent-blue);
+    color: white;
+}
+
+.social-links a svg {
+    margin-right: var(--spacing-sm);
+    width: 20px;
+    height: 20px;
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
     .container {

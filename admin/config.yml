@@ -23,6 +23,8 @@ collections:
           - { label: "Title", name: "title", widget: "string", default: "About Me" }
           - { label: "Photo", name: "photo", widget: "image", required: false }
           - { label: "Bio", name: "body", widget: "markdown" }
+          - { label: "Resume URL", name: "resumeUrl", widget: "string", required: false, hint: "Link to your resume (PDF or external link)" }
+          - { label: "GitHub Profile", name: "githubUrl", widget: "string", required: false, hint: "Your GitHub profile URL" }
       - file: "content/projects.json"
         label: "Projects"
         name: "projects"
