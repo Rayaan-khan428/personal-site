@@ -1,24 +1,16 @@
 {
   "photos": [
     {
-      "image": "/photos/174C89ED-03DE-4A21-AEC5-48BFAFB2A837_4_5005_c.jpeg",
-      "alt": "A photo from my collection"
+      "image": "/photos/img_2619.jpeg",
+      "alt": "Turkey"
     },
     {
-      "image": "/photos/3273C52A-1B0D-42A6-B3F0-FA7F8BB1A2C7_1_105_c.jpeg",
-      "alt": "A photo from my collection"
+      "image": "/photos/banner.jpeg",
+      "alt": "Oludeniz"
     },
     {
-      "image": "/photos/6EEDEFE5-549D-410D-8CB3-5AD32154424A_4_5005_c.jpeg",
-      "alt": "A photo from my collection"
-    },
-    {
-      "image": "/photos/C52F6A51-6A89-484E-A61B-ED6CD431FCCE_4_5005_c.jpeg",
-      "alt": "A photo from my collection"
-    },
-    {
-      "image": "/photos/D984F30C-EA8F-46C6-B7DB-36679BCA44A0_4_5005_c.jpeg",
-      "alt": "A photo from my collection"
+      "image": "/photos/img_9071.jpeg",
+      "alt": "car"
     }
   ]
 }
