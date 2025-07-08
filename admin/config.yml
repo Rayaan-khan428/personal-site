@@ -25,6 +25,7 @@ collections:
           - { label: "Bio", name: "body", widget: "markdown" }
           - { label: "Resume URL", name: "resumeUrl", widget: "string", required: false, hint: "Link to your resume (PDF or external link)" }
           - { label: "GitHub Profile", name: "githubUrl", widget: "string", required: false, hint: "Your GitHub profile URL" }
+          - { label: "LinkedIn Profile", name: "linkedinUrl", widget: "string", required: false, hint: "Your LinkedIn profile URL" }
       - file: "content/projects.json"
         label: "Projects"
         name: "projects"

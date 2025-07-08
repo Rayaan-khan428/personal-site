@@ -3,65 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Website</title>
+    <meta name="description" content="Rayaan Khan - Computer Science student at WLU passionate about building software that has a positive impact on people's lives.">
+    <meta name="author" content="Rayaan Khan">
+    <title>Rayaan Khan - Software Developer</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <div class="container">
         <header>
             <h1>Rayaan Khan</h1>
         </header>
         
-        <nav>
+        <nav role="navigation" aria-label="Main navigation">
             <ul>
-                <li><a href="#about">About Me</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#photos">Photos</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#about" aria-describedby="about-desc">About Me</a></li>
+                <li><a href="#projects" aria-describedby="projects-desc">Projects</a></li>
+                <li><a href="#photos" aria-describedby="photos-desc">Photos</a></li>
+                <li><a href="#contact" aria-describedby="contact-desc">Contact</a></li>
                 <li>
-                    <button id="theme-toggle" aria-label="Toggle dark mode">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sun"><path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/><circle cx="12" cy="12" r="5"/></svg>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                    <button id="theme-toggle" aria-label="Toggle between light and dark mode" aria-pressed="false">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sun" aria-hidden="true"><path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/><circle cx="12" cy="12" r="5"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="moon" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
                     </button>
                 </li>
             </ul>
         </nav>
 
-        <main>
-            <section id="about">
+        <main id="main-content">
+            <section id="about" aria-labelledby="about-heading">
+                <span id="about-desc" class="sr-only">Learn more about Rayaan Khan</span>
                 <!-- About me content will be loaded here -->
                 <div class="social-links">
                     <!-- Resume and GitHub links will be loaded here -->
                 </div>
             </section>
 
-            <section id="projects">
-                <h2>Projects</h2>
+            <section id="projects" aria-labelledby="projects-heading">
+                <span id="projects-desc" class="sr-only">View Rayaan's software projects</span>
+                <h2 id="projects-heading">Projects</h2>
 
-                <h3 class="project-category-title">Public Projects</h3>
-                <p>Projects I've built for others to use.</p>
-                <ul id="public-project-list" class="project-list">
-                    <!-- Public projects will be loaded here -->
-                </ul>
+                <div class="project-category">
+                    <h3 class="project-category-title">Public Projects</h3>
+                    <p>Projects I've built for others to use.</p>
+                    <ul id="public-project-list" class="project-list" role="list">
+                        <!-- Public projects will be loaded here -->
+                    </ul>
+                </div>
 
-                <h3 class="project-category-title">Personal Projects</h3>
-                <p>Things I've built for fun and learning.</p>
-                <ul id="personal-project-list" class="project-list">
-                    <!-- Personal projects will be loaded here -->
-                </ul>
+                <div class="project-category">
+                    <h3 class="project-category-title">Personal Projects</h3>
+                    <p>Things I've built for fun and learning.</p>
+                    <ul id="personal-project-list" class="project-list" role="list">
+                        <!-- Personal projects will be loaded here -->
+                    </ul>
+                </div>
             </section>
 
-            <section id="photos">
-                <h2>Photos</h2>
+            <section id="photos" aria-labelledby="photos-heading">
+                <span id="photos-desc" class="sr-only">Browse Rayaan's photography</span>
+                <h2 id="photos-heading">Photos</h2>
                 <p>Here are some photos I've taken.</p>
-                <div class="photo-gallery">
+                <div class="photo-gallery" role="img" aria-label="Photo gallery">
                     <!-- Photos will be loaded here by script.js -->
                 </div>
             </section>
 
-            <section id="contact">
-                <h2>Contact</h2>
+            <section id="contact" aria-labelledby="contact-heading">
+                <span id="contact-desc" class="sr-only">Get in touch with Rayaan</span>
+                <h2 id="contact-heading">Contact</h2>
                 <p>You can reach me at <a href="mailto:rayaan.k.ca@gmail.com">rayaan.k.ca@gmail.com</a></p>
             </section>
         </main>
