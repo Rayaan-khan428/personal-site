@@ -243,6 +243,12 @@ section:first-child h2 {
     height: 120px;
     object-fit: cover;
     border: 1px solid var(--border-color);
+    filter: grayscale(100%);
+    transition: filter 0.2s ease;
+}
+
+.about-me-photo:hover {
+    filter: grayscale(0%);
 }
 
 /* Projects section */
