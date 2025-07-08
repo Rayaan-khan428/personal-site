@@ -1,6 +1,6 @@
 ---
 title: About Me
-photo: /photos/aboutme.jpeg
+photo: /photos/d3962914-6bee-4984-b932-a0e001048456.jpeg
 resumeUrl: https://drive.google.com/file/d/your-resume-link/view
 githubUrl: https://github.com/Rayaan-khan428
 linkedinUrl: https://www.linkedin.com/in/rayaan-k/
