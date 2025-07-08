@@ -62,11 +62,11 @@ function loadAboutMe() {
         .then(text => {
             const aboutSection = document.getElementById('about');
             const [_, frontmatter, markdown] = text.split('---\n');
-            const photoMatch = frontmatter.match(/photo: "(.*)"/);
-            const titleMatch = frontmatter.match(/title: "(.*)"/);
-            const resumeMatch = frontmatter.match(/resumeUrl: "(.*)"/);
-            const githubMatch = frontmatter.match(/githubUrl: "(.*)"/);
-            const linkedinMatch = frontmatter.match(/linkedinUrl: "(.*)"/);
+            const photoMatch = frontmatter.match(/photo: (.+)/);
+            const titleMatch = frontmatter.match(/title: (.+)/);
+            const resumeMatch = frontmatter.match(/resumeUrl: (.+)/);
+            const githubMatch = frontmatter.match(/githubUrl: (.+)/);
+            const linkedinMatch = frontmatter.match(/linkedinUrl: (.+)/);
 
             let html = `<h2 id="about-heading">${titleMatch ? titleMatch[1] : 'About Me'}</h2>`;
             if (photoMatch) {
