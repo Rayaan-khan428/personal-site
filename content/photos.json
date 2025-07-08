@@ -2,15 +2,23 @@
   "photos": [
     {
       "image": "/photos/img_2619.jpeg",
+      "alt": "turkey"
+    },
+    {
+      "image": "/photos/img_2681.jpeg",
+      "alt": "space shuttle"
+    },
+    {
+      "image": "/photos/img_2176.jpeg",
       "alt": "Turkey"
     },
     {
-      "image": "/photos/banner.jpeg",
-      "alt": "Oludeniz"
+      "image": "/photos/img_4487.jpeg",
+      "alt": "foggy morning"
     },
     {
-      "image": "/photos/img_9071.jpeg",
-      "alt": "car"
+      "image": "/photos/img_2447.jpeg",
+      "alt": "Turkey"
     }
   ]
 }
