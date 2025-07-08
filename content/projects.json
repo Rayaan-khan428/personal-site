@@ -9,9 +9,10 @@
     },
     {
       "title": "Leetr",
-      "url": "#",
+      "url": "https://www.leetr.io",
       "description": "- Created a platform that makes technical interview prep more fun and effective, including a Chrome extension and a spaced repetition system that sends you reminders when it’s time to practice.\n- Tracks your progress, gives you insights, and lets you compete with friends on leaderboards or send each other coding challenges.",
-      "category": "Public"
+      "category": "Public",
+      "image": "/photos/screenshot-2025-07-08-at-1.36.43 pm.png"
     },
     {
       "title": "Huberman AI",
